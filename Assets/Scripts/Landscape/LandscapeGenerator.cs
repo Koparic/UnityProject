@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LandscapeGenerator : MonoBehaviour
 {
-    
-
     public float freq = 0.2f;
     public float diference = 1f;
     public float koof = 1f;
@@ -22,12 +20,14 @@ public class LandscapeGenerator : MonoBehaviour
         dotCoords[0] = new Vector2(size.x / -2, -size.y);
         dotCoords[1] = new Vector2(size.x / -2, 0);
         dotCoords[dotCoords.Length - 1] = new Vector2(size.x / 2, -size.y);
+        dotCoords[dotCoords.Length - 2] = new Vector2(size.x / 2, 0);
 
         meshCoords[0] = new Vector3(size.x / -2, -size.y, 0);
         meshCoords[1] = new Vector3(size.x / -2, 0, 0);
         meshCoords[dotCoords.Length - 1] = new Vector3(size.x / -2, -size.y, 0);
+        meshCoords[dotCoords.Length - 2] = new Vector3(size.x / -2, 0, 0);
 
-        for (int x = 2; x < dotCoords.Length - 1; x++)
+        for (int x = 2; x < dotCoords.Length - 2; x++)
         {
             float randFloat;
             if (vel == 0) {
