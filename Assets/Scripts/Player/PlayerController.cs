@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     public Transform turretTransform;
     public LayerMask groundLayer;
     public CameraController cameraController;
+    public ReadyAimFire readyAimFire;
 
     private Vector2 targetPosition;
     private Vector2 prevPosition;
+    private bool aiming = false;
 
     void Start()
     {
@@ -27,7 +29,17 @@ public class PlayerController : MonoBehaviour
         RotateTurret();
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            aiming = !aiming;
             cameraController.aimingModeActive = !cameraController.aimingModeActive;
+            readyAimFire.dotDisplay = !readyAimFire.dotDisplay;
+        }
+        if (aiming)
+        {
+            readyAimFire.Aim();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                cameraController.player = readyAimFire.Fire(transform);
+            }
         }
     }
 
