@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LandscapeGenerator : MonoBehaviour
@@ -20,13 +18,10 @@ public class LandscapeGenerator : MonoBehaviour
         dotCoords[0] = new Vector2(size.x / -2, -size.y);
         dotCoords[1] = new Vector2(size.x / -2, 0);
         dotCoords[dotCoords.Length - 1] = new Vector2(size.x / 2, -size.y);
-        dotCoords[dotCoords.Length - 2] = new Vector2(size.x / 2, 0);
 
         meshCoords[0] = new Vector3(size.x / -2, -size.y, 0);
         meshCoords[1] = new Vector3(size.x / -2, 0, 0);
         meshCoords[dotCoords.Length - 1] = new Vector3(size.x / -2, -size.y, 0);
-        meshCoords[dotCoords.Length - 2] = new Vector3(size.x / -2, 0, 0);
-
         for (int x = 2; x < dotCoords.Length - 2; x++)
         {
             float randFloat;
@@ -41,21 +36,18 @@ public class LandscapeGenerator : MonoBehaviour
             dotCoords[x] = new Vector2(dotCoords[x-1].x + freq, dotCoords[x-1].y + randFloat);
             meshCoords[x] = new Vector3(dotCoords[x - 1].x + freq, dotCoords[x - 1].y + randFloat, 0);
         }
+        dotCoords[dotCoords.Length - 2] = new Vector2(size.x / 2, dotCoords[dotCoords.Length - 3].y);
+        meshCoords[dotCoords.Length - 2] = new Vector3(size.x / -2, dotCoords[dotCoords.Length - 3].y, 0);
         colComponent.SetPath(0, dotCoords);
         Mesh mesh = colComponent.CreateMesh(true, false);
+        mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
         mesh.Optimize();
         GetComponent<MeshFilter>().mesh = mesh;
-        gameObject.transform.position = new Vector3(0, -3, 0);
     }
 
-    void Start()
+    void Awake()
     {
         DotGenerator();
-    }
-
-
-    void Update()
-    {
-        
     }
 }
