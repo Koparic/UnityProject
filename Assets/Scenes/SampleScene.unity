@@ -535,6 +535,7 @@ MonoBehaviour:
   dotDisplay: 0
   dotFreq: 0.05
   speed: 25
+  radius: 3
   gravity: 9
 --- !u!1 &1843308379
 GameObject:
@@ -613,7 +614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843308379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35, y: 8.5, z: 1}
+  m_LocalPosition: {x: 32.6, y: 0, z: 1}
   m_LocalScale: {x: 0.1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public float speedY;
     public float startAngle;
     public float gravity;
+    public float radius;
     private Vector2 velocity;
     public Transform player;
     public ParticleSystem explosion;
@@ -23,11 +24,15 @@ public class Bullet : MonoBehaviour
         {
             if (hit.collider.tag != "Player")
             {
+                LandscapeCutter comp = gameObject.AddComponent<LandscapeCutter>();
+                gameObject.transform.SetParent(FindObjectOfType<LandscapeGenerator>().gameObject.transform);
+                comp.radius = radius;
+                comp.Cut();
                 gameObject.SetActive(false);
                 ParticleSystem exp = GameObject.Instantiate(explosion);
                 exp.transform.SetParent(transform.parent);
                 exp.transform.position = transform.position;
-                Destroy(exp, 2f);
+                Destroy(exp.gameObject, 2f);
                 Destroy(gameObject, 2f);
             }
         }

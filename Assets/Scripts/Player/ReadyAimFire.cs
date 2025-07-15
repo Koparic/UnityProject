@@ -11,6 +11,7 @@ public class ReadyAimFire : MonoBehaviour
     public float dotFreq = 0.1f;
     public static int dotNum = 15;
     public float speed = 25f;
+    public float radius = 2f;
     public float gravity = 9f;
     private GameObject[] dots = new GameObject[dotNum];
 
@@ -55,6 +56,7 @@ public class ReadyAimFire : MonoBehaviour
         comp.gravity = gravity;
         comp.player = player;
         comp.explosion = explosion;
+        comp.radius = radius;
         return b.transform;
     }
 
